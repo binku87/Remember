@@ -1,0 +1,11 @@
+<h1>Listing stages</h1>
+
+<% @stages.each do |stage| %>
+  <h2><%= stage.name %></h2><%= link_to 'Edit', edit_stage_path(stage) %>
+  <% stage.things.each do |thing| %>
+    <%= thing.name %>
+  <% end %>
+<% end %>
+
+<%= link_to 'New Stage', new_stage_path %>
+<%= link_to 'New Thing', new_thing_path %>
