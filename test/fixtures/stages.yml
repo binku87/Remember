@@ -1,9 +1,16 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-# one:
-#   name: MyString
-#   interval: 1
-#
-# two:
-#   name: MyString
-#   interval: 1
+one:
+  name: 'Stage 1'
+  interval_begin: 0
+  interval_end: 0
+
+two:
+  name: 'Stage 2'
+  interval_begin: 43200
+  interval_end: 63450
+
+third:
+  name: 'Stage 3'
+  interval_begin: 84600
+  interval_end: 169200

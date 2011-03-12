@@ -10,13 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110309140734) do
+ActiveRecord::Schema.define(:version => 20110312150756) do
 
   create_table "stages", :force => true do |t|
     t.string   "name"
-    t.integer  "interval"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "interval_begin"
+    t.integer  "interval_end"
   end
 
   create_table "things", :force => true do |t|
@@ -25,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20110309140734) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_review",  :default => false
+    t.integer  "stage_id"
   end
 
 end
