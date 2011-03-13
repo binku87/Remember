@@ -18,10 +18,12 @@ class Stage < ActiveRecord::Base
     Stage.first
   end
 
-  def range time
-    if !first_stage? && name == "Stage 2"
-       Time.now - updated_at > 2.days
-    end
+  def range? interval
+    interval >= interval_begin && interval <= interval_end
+  end
+
+  def over? interval
+    interval_end < interval
   end
 
   def first_stage?

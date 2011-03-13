@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110313111429) do
+ActiveRecord::Schema.define(:version => 20110313131635) do
 
   create_table "stages", :force => true do |t|
     t.string   "name"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(:version => 20110313111429) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_review",  :default => false
     t.integer  "stage_id"
+    t.datetime "last_review_at"
   end
 
 end
