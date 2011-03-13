@@ -1,9 +1,22 @@
 class Stage < ActiveRecord::Base
   belongs_to :next, :class_name => "Stage", :foreign_key => "next_stage_id"
   belongs_to :previous, :class_name => "Stage", :foreign_key => "previous_stage_id"
+  after_create :rebuild_stage
+
+  def rebuild_stage
+    unless self.previous.nil?
+      self.previous.next.update_attribute(:previous, self) unless self.previous.next.nil?
+      self.update_attribute(:next, previous.next)
+      self.previous.update_attribute(:next, self)
+    end
+  end
 
   def things
     Thing.all.select { |thing| thing.stage == self }
+  end
+
+  def things_need_to_review
+    Thing.all.select { |thing| thing.stage == self && !thing.review? }
   end
 
   def self.first_stage

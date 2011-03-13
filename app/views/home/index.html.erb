@@ -1,0 +1,14 @@
+<h1>Thing Need To Review</h1>
+
+<% Stage.all_stages.each do |stage| %>
+  <h2><%= stage.name %></h2>
+    <div style="border: dashed 1px #d3d1d1;padding: 10px; width:500px">
+      <% stage.things_need_to_review.each do |thing| %>
+        <input type="checkbox" id="review" value="<%= thing.id %>"/><%= link_to thing.name, thing %>
+      <% end %>
+    </div>
+<% end %>
+<br>
+
+<%= link_to 'New Stage', new_stage_path %>
+<%= link_to 'New Thing', new_thing_path %>
