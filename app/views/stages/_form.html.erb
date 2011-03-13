@@ -23,7 +23,32 @@
     <%= f.label :interval_end %><br />
     <%= f.text_field :interval_end %>
   </div>
+  <div class="field">
+    <%= f.label :previous %><br />
+    <%= f.select :previous, Stage.all.map { |s| [s.name, s.id] } %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Begin</th>
+    <th>End</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% Stage.all_stages.each do |stage| %>
+    <tr>
+      <td><%= stage.name %></td>
+      <td><%= to_day(stage.interval_begin) %></td>
+      <td><%= to_day(stage.interval_end) %></td>
+      <td><%= link_to 'Show', stage %></td>
+      <td><%= link_to 'Edit', edit_stage_path(stage) %></td>
+    </tr>
+  <% end %>
+</table>

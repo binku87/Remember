@@ -6,10 +6,14 @@
 </p>
 
 <p>
-  <b>Interval:</b>
-  <%= @stage.interval %>
+  <b>Begin:</b>
+  <%= to_day(@stage.interval_begin) %>
 </p>
 
+<p>
+  <b>End:</b>
+  <%= to_day(@stage.interval_end) %>
+</p>
 
 <%= link_to 'Edit', edit_stage_path(@stage) %> |
 <%= link_to 'Back', stages_path %>

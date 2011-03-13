@@ -29,4 +29,14 @@ class Stage < ActiveRecord::Base
   def first_stage?
     self == previous
   end
+
+  def self.all_stages
+    stages, current_stage = [], Stage.first_stage
+    while
+      stages << current_stage
+      break if current_stage == Stage.last_stage
+      current_stage = current_stage.next
+    end
+    stages
+  end
 end
