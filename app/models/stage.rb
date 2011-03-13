@@ -6,7 +6,11 @@ class Stage < ActiveRecord::Base
   end
 
   def self.first_stage
-    find :first, :conditions => {:previous_stage => -1}
+    where("id = previous_stage").first
+  end
+
+  def self.last_stage
+    where("id = next_stage").first
   end
 
   def self.init_stage
@@ -15,7 +19,7 @@ class Stage < ActiveRecord::Base
 
   def range time
     if !first_stage? && name == "Stage 2"
-       Time.now - updated_at > 2.days 
+       Time.now - updated_at > 2.days
     end
   end
 

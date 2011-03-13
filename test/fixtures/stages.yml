@@ -5,7 +5,7 @@ one:
   name: 'Stage 1'
   interval_begin: 0
   interval_end: 0
-  previous_stage: -1
+  previous_stage: 1
   next_stage: 2
 
 two:
@@ -22,5 +22,5 @@ third:
   interval_begin: 84600
   interval_end: 169200
   previous_stage: 2
-  next_stage: 4
-  
+  next_stage: 3
+
