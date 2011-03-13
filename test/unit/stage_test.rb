@@ -9,7 +9,7 @@ class StageTest < ActiveSupport::TestCase
   end
 
   test "get next stage" do
-    current_stage = Stage.first
+    current_stage = Stage.first_stage
     assert_equal "Stage 1", current_stage.name
     current_stage = current_stage.next
     assert_equal "Stage 2", current_stage.name
