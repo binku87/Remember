@@ -5,22 +5,22 @@ one:
   name: 'Stage 1'
   interval_begin: 0
   interval_end: 0
-  previous_stage: 1
-  next_stage: 2
+  previous_stage_id: 1
+  next_stage_id: 2
 
 two:
   id: 2
   name: 'Stage 2'
   interval_begin: 43200
   interval_end: 63450
-  previous_stage: 1
-  next_stage: 3
+  previous_stage_id: 1
+  next_stage_id: 3
 
 third:
   id: 3
   name: 'Stage 3'
   interval_begin: 84600
   interval_end: 169200
-  previous_stage: 2
-  next_stage: 3
+  previous_stage_id: 2
+  next_stage_id: 3
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110313051322) do
+ActiveRecord::Schema.define(:version => 20110313111429) do
 
   create_table "stages", :force => true do |t|
     t.string   "name"
@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(:version => 20110313051322) do
     t.datetime "updated_at"
     t.integer  "interval_begin"
     t.integer  "interval_end"
-    t.integer  "previous_stage"
-    t.integer  "next_stage"
+    t.integer  "previous_stage_id"
+    t.integer  "next_stage_id"
   end
 
   create_table "things", :force => true do |t|
