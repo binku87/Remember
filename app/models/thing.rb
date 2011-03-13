@@ -13,7 +13,7 @@ class Thing < ActiveRecord::Base
   def stage_with_update
     if !review? && stage_without_update.next.over?(Time.now - created_at)
       update_attribute(:stage, stage_without_update.previous)
-      stage_without_update.previous
+      stage_without_update
     else
       stage_without_update
     end
