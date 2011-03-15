@@ -4,7 +4,9 @@
   <h2><%= stage.name %></h2>
     <div style="border: dashed 1px #d3d1d1;padding: 10px; width:500px">
       <% stage.things_need_to_review.each do |thing| %>
-        <input type="checkbox" id="review" value="<%= thing.id %>"/><%= link_to thing.name, thing %>
+        <div class="thing-content">
+          <input type="checkbox" class="review" value="<%= thing.id %>"/><%= link_to thing.name, thing %>
+        </div>
       <% end %>
     </div>
 <% end %>
@@ -12,3 +14,20 @@
 
 <%= link_to 'New Stage', new_stage_path %>
 <%= link_to 'New Thing', new_thing_path %>
+
+<script type="text/javascript">
+  $(".review").click(function(){
+    var $this = $(this);
+    $.ajax({
+      type: "PUT",
+      url: "/things/" + $(this).val() + "/review.json",
+      success: function(data) {
+        if (data.status == "success") {
+          $this.parent().remove();
+        } else {
+          alert("Can't make it as review");
+        }
+      }
+    });
+  });
+</script>

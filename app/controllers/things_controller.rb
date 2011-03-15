@@ -80,4 +80,17 @@ class ThingsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def review
+    @thing = Thing.find(params[:id])
+    respond_to do |format|
+      if @thing.review!
+        format.html { redirect_to(@thing, :notice => 'Thing was successfully updated.') }
+        format.json { render :json => { :status => "success" }.to_json }
+      else
+        format.html { render :action => "edit" }
+        format.json { render :json => { :status => "failure", :errors => @thing.errors }.to_json }
+      end
+    end
+  end
 end
