@@ -1,25 +1,34 @@
 <h1>Listing things</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @things.each do |thing| %>
-  <tr>
-    <td><%= thing.name %></td>
-    <td><%= thing.content %></td>
-    <td><%= link_to 'Show', thing %></td>
-    <td><%= link_to 'Edit', edit_thing_path(thing) %></td>
-    <td><%= link_to 'Destroy', thing, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+  <% Stage.all_stages.each do |stage| %>
+    <h2><%= stage.name %></h2>
+      <div style="border: dashed 1px #d3d1d1;padding: 10px; width:600px">
+        <% @things = stage.things %>
+        <% unless @things.empty? %>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>Content</th>
+              <th>Review</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+            <% @things.each do |thing| %>
+              <tr>
+                <td><%= thing.name %></td>
+                <td><%= thing.content %></td>
+                <td><%= thing.review? %></td>
+                <td><%= link_to 'Show', thing %></td>
+                <td><%= link_to 'Edit', edit_thing_path(thing) %></td>
+                <td><%= link_to 'Destroy', thing, :confirm => 'Are you sure?', :method => :delete %></td>
+              </tr>
+            <% end %>
+          </table>
+        <% end %>
+      </div>
+  <% end %>
 <br />
 
 <%= link_to 'New Thing', new_thing_path %>

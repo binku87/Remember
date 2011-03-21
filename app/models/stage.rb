@@ -19,6 +19,10 @@ class Stage < ActiveRecord::Base
     Thing.all.select { |thing| thing.stage == self && !thing.review? }
   end
 
+  def things
+    Thing.all.select { |thing| thing.stage == self }
+  end
+
   def self.first_stage
     where("id = previous_stage_id").first
   end
