@@ -12,6 +12,7 @@ class ThingTest < ActiveSupport::TestCase
     @init_time = Time.now
     Timecop.freeze(@init_time)
     @stage1 = Stage.create(:name => "Stage 1", :previous => nil, :next => nil, :interval_begin => 0, :interval_end => 0)
+    @stage1.update_attribute(:previous, @stage1)
     @stage2 = Stage.create(:name => "Stage 2", :previous => @stage1, :next => nil, :interval_begin => @a_day / 2, :interval_end => @a_day * 0.75)
     @stage1.update_attribute(:next, @stage2)
     @stage3 = Stage.create(:name => "Stage 3", :previous => @stage2, :next => nil, :interval_begin => @a_day, :interval_end => 2 * @a_day)
@@ -64,11 +65,11 @@ class ThingTest < ActiveSupport::TestCase
   end
 
   test "it in 'Stage 2' and before 2 days later and it is reviewed, it should go to 'Stage 3'" do
-    Timecop.freeze(Time.now + 12.hours)
+    Timecop.freeze(@init_time + 12.hours)
     @thing.review!
     assert_equal @stage2, @thing.stage
 
-    Timecop.freeze(Time.now + @a_day*2 - 1)
+    Timecop.freeze(@init_time + @a_day*2 - 1)
     @thing.review!
     assert_equal @stage3, @thing.stage
   end
