@@ -3,7 +3,7 @@
 
   <% Stage.all_stages.each do |stage| %>
     <h2><%= stage.name %></h2>
-      <div style="border: dashed 1px #d3d1d1;padding: 10px; width:600px">
+      <div style="border: dashed 1px #d3d1d1;padding: 10px; width:800px">
         <% @things = stage.things %>
         <% unless @things.empty? %>
           <table>
@@ -15,11 +15,12 @@
               <th></th>
               <th></th>
             </tr>
-            <% @things.each do |thing| %>
+            <% @things.each_with_index do |thing, index| %>
               <tr>
-                <td><%= thing.name %></td>
-                <td><%= thing.content %></td>
-                <td><%= thing.review? %></td>
+                <% cla = index + 1 == @things.size ? "" : "clear" %>
+                <td class="<%= cla %>"><%= thing.name %></td>
+                <td class="<%= cla %>"><%= thing.content_html.html_safe %></td>
+                <td class="<%= cla %>"><%= thing.review? %></td>
                 <td><%= link_to 'Show', thing %></td>
                 <td><%= link_to 'Edit', edit_thing_path(thing) %></td>
                 <td><%= link_to 'Destroy', thing, :confirm => 'Are you sure?', :method => :delete %></td>

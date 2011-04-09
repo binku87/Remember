@@ -54,3 +54,8 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+td.clear {
+  padding: 10px 0px;
+  border-bottom: 1px dashed #222222;
+}

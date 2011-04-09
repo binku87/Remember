@@ -36,4 +36,8 @@ class Thing < ActiveRecord::Base
   def return_to_previous_stage
     update_attribute(:stage, stage.previous)
   end
+
+  def content_html
+    content.gsub("\r\n", "<br>")
+  end
 end
